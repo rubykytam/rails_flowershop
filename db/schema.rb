@@ -10,8 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 0) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_16_171257) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "bookmarks", force: :cascade do |t|
+    t.string "quantity"
+    t.string "integer"
+    t.bigint "flower_id", null: false
+    t.bigint "bunch_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bunch_id"], name: "index_bookmarks_on_bunch_id"
+    t.index ["flower_id"], name: "index_bookmarks_on_flower_id"
+  end
+
+  create_table "bunches", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "flowers", force: :cascade do |t|
+    t.string "name"
+    t.integer "price"
+    t.string "color"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "bookmarks", "bunches"
+  add_foreign_key "bookmarks", "flowers"
 end
