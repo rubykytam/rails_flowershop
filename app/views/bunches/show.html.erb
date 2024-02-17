@@ -1,0 +1,9 @@
+<h1><%=@bunch.name%></h1>
+<%= link_to "Add flowers", new_bunch_bookmark_path(@bunch)%>
+<% @bunch.bookmarks.each do |bookmark| %>
+<p><%= bookmark.flower.name %></p>
+<p><%= bookmark.flower.price %></p>
+<p><%= bookmark.quantity %></p>
+<p><%=link_to "Delete", bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></p>
+<%end%>
+<%= link_to "Back to home", bunches_path%>

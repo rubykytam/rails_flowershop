@@ -1,0 +1,5 @@
+<h1>Your Flower's</h1>
+<%= simple_form_for [@bunch, @bookmark] do |f|%>
+  <%= f.association :flower, label_method: :custom_label %>
+  <%= f.submit %>
+<% end %>

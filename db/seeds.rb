@@ -7,3 +7,5 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+Flower.create(name: "Rose", price: 400, color: "Red", photo: "/app/assets/images/rose_red.webp")
+Flower.create(name: "Rose", price: 350, color: "White", photo: "/app/assets/images/rose_white.webp")

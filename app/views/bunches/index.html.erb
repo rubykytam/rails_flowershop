@@ -1,0 +1,6 @@
+<h1>Rubys' Flower Shop</h1>
+<% @bunches.each do |bunch|%>
+<p><%=link_to bunch.name, bunch_path(bunch) %> -----
+<%=link_to "Delete", bunches_path(bunch), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></p>
+<%end%>
+<%= link_to "Create my own bouquet", new_bunch_path%>

@@ -10,17 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_16_171257) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_17_085118) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "bookmarks", force: :cascade do |t|
-    t.string "quantity"
-    t.string "integer"
     t.bigint "flower_id", null: false
     t.bigint "bunch_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "quantity", default: 1
     t.index ["bunch_id"], name: "index_bookmarks_on_bunch_id"
     t.index ["flower_id"], name: "index_bookmarks_on_flower_id"
   end
@@ -38,6 +37,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_16_171257) do
     t.string "color"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "photo"
   end
 
   add_foreign_key "bookmarks", "bunches"
