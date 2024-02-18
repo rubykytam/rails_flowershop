@@ -19,7 +19,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_17_085118) do
     t.bigint "bunch_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "quantity", default: 1
+    t.integer "quantity"
     t.index ["bunch_id"], name: "index_bookmarks_on_bunch_id"
     t.index ["flower_id"], name: "index_bookmarks_on_flower_id"
   end

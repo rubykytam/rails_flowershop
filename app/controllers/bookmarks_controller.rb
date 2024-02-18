@@ -24,7 +24,7 @@ class BookmarksController < ApplicationController
 private
 
   def params_bookmark
-    params.require(:bookmark).permit(:flower_id)
+    params.require(:bookmark).permit(:flower_id, :quantity)
   end
 
 end

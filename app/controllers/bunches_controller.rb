@@ -5,6 +5,7 @@ class BunchesController < ApplicationController
 
   def show
     @bunch = Bunch.find(params[:id])
+    @price = @bunch.bookmarks.map{|bookmark|bookmark.flower.price * bookmark.quantity}.sum
   end
 
   def new
