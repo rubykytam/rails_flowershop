@@ -1,0 +1,20 @@
+<div class = "banner" style="background-image: url('<%= image_path("banner3.webp") %>')" >
+  <h1><%=@bunch.name%></h1>
+  <h3>Estimated Price: ¥ <%= @price%></h3>
+  <%= link_to "Add flowers", new_bunch_bookmark_path(@bunch),class:"btn btn-primary btn-lg"%>
+</div>
+<div class="flower_cards_container">
+  <% @bunch.bookmarks.each do |bookmark| %>
+    <div class="flower_card">
+      <div class ="flower_photo" style="background-image: url('<%= image_path(bookmark.flower.photo) %>'); ">
+        <p><%= bookmark.flower.name %></p>
+      </div>
+      <div class="card_contents">
+        <p>Color: <%= bookmark.flower.color %></p>
+        <p>Unit Price : ¥<%= bookmark.flower.price %>
+          <p>Quantity: <%= bookmark.quantity %></p>
+          <p><%=link_to "Delete", bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></p>
+        </div>
+      </div>
+    <%end%>
+  </div>

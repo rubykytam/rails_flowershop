@@ -5,11 +5,13 @@ class BunchesController < ApplicationController
 
   def show
     @bunch = Bunch.find(params[:id])
-    @price = @bunch.bookmarks.map{|bookmark|bookmark.flower.price * bookmark.quantity}.sum
+    @bookmarks= @bunch.bookmarks
+    # @price = @bunch.bookmarks.map{|bookmark|bookmark.flower.price * bookmark.quantity}.sum
   end
 
   def new
     @bunch = Bunch.new
+    @bookmark = Bookmark.new
   end
 
   def create
@@ -18,6 +20,15 @@ class BunchesController < ApplicationController
       redirect_to bunch_path(@bunch)
     else
       render "new", status: :unprocessable_entity
+    end
+  end
+
+  def update
+    @bunch = Bunch.find(params[:id])
+    if @bunch.update(params_bunch)
+      redirect_to bunch_path(@bunch), notice: 'Bunch was successfully updated.'
+    else
+      redirect_to bunch_path(@bunch), notice: 'Bunch was not successfully updated.'
     end
   end
 
@@ -30,6 +41,6 @@ class BunchesController < ApplicationController
   private
 
   def params_bunch
-    params.require(:bunch).permit(:name, :description)
+    params.require(:bunch).permit(:id, :name, :description, bookmarks_attributes: [:id, :flower_id, :quantity])
   end
 end

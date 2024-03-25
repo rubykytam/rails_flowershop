@@ -1,6 +1,19 @@
-<h1>Rubys' Flower Shop</h1>
-<% @bunches.each do |bunch|%>
-<p><%=link_to bunch.name, bunch_path(bunch) %> -----
-<%=link_to "Delete", bunches_path(bunch), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></p>
-<%end%>
-<%= link_to "Create my own bouquet", new_bunch_path%>
+<div class = "banner" style="background-image: url('<%= image_path("banner3.webp") %>')" >
+  <div class="jumbotron">
+    <h1 class="display-4">Rubys' Flower Shop</h1>
+    <p>The most beautiful flowers in the world</p>
+    <p class="lead">
+      <%= link_to "Create your own bouquet", new_bunch_path, class:"btn btn-primary btn-lg" %>
+    </p>
+  </div>
+</div>
+<div class="container mt-3">
+  <div class="bunches_cards_container">
+    <% @bunches.each do |bunch|%>
+      <div class="bunches_card" style="background-image: url('http://source.unsplash.com/featured/?<%=bunch.name.downcase.gsub(" ", "_")%>_flowers')">
+        <p><%=link_to bunch.name, bunch_path(bunch),class: 'text-decoration-none text-white' %></p>
+      </div>
+      <p><%=link_to "Delete", bunch_path(bunch),class: 'text-decoration-none text-white', data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></p>
+    <%end%>
+  </div>
+</div>
